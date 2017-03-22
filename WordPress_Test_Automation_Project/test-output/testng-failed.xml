@@ -5,9 +5,11 @@
     <classes>
       <class name="TestNG.wordpress_site">
         <methods>
+          <include name="WP_01_Login_Fail_No_UserName_and_Password"/>
+          <include name="WP_01_Login_Success"/>
+          <include name="WP_01_Login_Fail_No_UserName"/>
           <include name="launchapp"/>
           <include name="terminatetest"/>
-          <include name="WP_02_Add_Post"/>
         </methods>
       </class> <!-- TestNG.wordpress_site -->
     </classes>
