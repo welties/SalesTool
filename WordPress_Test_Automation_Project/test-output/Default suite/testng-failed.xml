@@ -5,10 +5,8 @@
     <classes>
       <class name="TestNG.wordpress_site">
         <methods>
-          <include name="WP_01_Login_Fail_No_UserName_and_Password"/>
-          <include name="WP_01_Login_Success"/>
-          <include name="WP_01_Login_Fail_No_UserName"/>
-          <include name="launchapp"/>
+          <include name="WP_01_Login_Fail_Bad_Password"/>
+          <include name="launchApp"/>
           <include name="terminatetest"/>
         </methods>
       </class> <!-- TestNG.wordpress_site -->

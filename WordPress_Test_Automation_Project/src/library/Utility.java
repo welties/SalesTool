@@ -22,6 +22,8 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -61,12 +63,16 @@ public class Utility {
 			System.out.println("Element is NOT present -  " + item);
 			return false;
 		}
+		finally {
+			driver.close();
+		}
+		
 	}
 
 	public static void WP_Admin_Login(WebDriver driver, String userName,
 			String userPassword) {
 
-		System.out.println("Starting test: "
+		System.out.println("In method: "
 				+ Thread.currentThread().getStackTrace()[1].getMethodName());
 		Utility.captureScreenshot(driver, "Before capture login details");
 		WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -103,5 +109,32 @@ public class Utility {
 		} catch (Exception e) {
 			AssertJUnit.assertEquals("ERROR", "You are now logged out.");
 		}
+	}
+	
+	public static void launchTW(WebDriver driver) {
+		System.out.println("In method: "
+				+ Thread.currentThread().getStackTrace()[1].getMethodName());
+		System.out.println("Pre-test Settings");
+		System.setProperty("webdriver.chrome.driver",
+				"/Users/wayne/Documents/myprojects/Selenium/Chrome/chromedriver");
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--kiosk");
+		driver = new ChromeDriver(options);
+
+		System.out.println("Starting @Before test");
+		// Puts an Implicit wait, Will wait for 60 seconds before throwing
+		// exception
+		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+
+		// Launch website
+		System.out.println("Launch website");
+		driver.navigate().to("http://www.stuffandthings.co.za/tw/wp-admin");
+
+		System.out.println("Maximise the browser");
+		driver.manage().window().maximize();
+
+		Utility.captureScreenshot(driver, "After launch");
+
+		System.out.println("End of @BeforeTest");
 	}
 }
