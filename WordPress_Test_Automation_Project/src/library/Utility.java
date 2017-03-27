@@ -96,7 +96,9 @@ public class Utility {
 		WebElement dropDespesa = driver.findElement(By
 				.id("wp-admin-bar-logout"));
 		System.out.println("Click on 'Logout'");
-		dropDespesa.findElement(By.id("wp-admin-bar-logout")).click();
+		//dropDespesa.findElement(By.id("wp-admin-bar-logout")).click();
+		String despesa = ".//*[@id='wp-admin-bar-logout']/a";
+		dropDespesa.findElement(By.xpath(".//*[@id='wp-admin-bar-logout']/a")).click();
 		Utility.captureScreenshot(driver, "After click on logout");
 
 		// Confirm successful logout
@@ -114,14 +116,14 @@ public class Utility {
 	public static void launchTW(WebDriver driver) {
 		System.out.println("In method: "
 				+ Thread.currentThread().getStackTrace()[1].getMethodName());
-		System.out.println("Pre-test Settings");
+	/*	System.out.println("Pre-test Settings");
 		System.setProperty("webdriver.chrome.driver",
 				"/Users/wayne/Documents/myprojects/Selenium/Chrome/chromedriver");
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--kiosk");
 		driver = new ChromeDriver(options);
+		*/
 
-		System.out.println("Starting @Before test");
 		// Puts an Implicit wait, Will wait for 60 seconds before throwing
 		// exception
 		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
@@ -135,6 +137,5 @@ public class Utility {
 
 		Utility.captureScreenshot(driver, "After launch");
 
-		System.out.println("End of @BeforeTest");
 	}
 }
